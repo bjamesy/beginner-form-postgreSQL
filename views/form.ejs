@@ -1,0 +1,85 @@
+<% include partials/header %>
+
+<h1 style="text-align: center">Overnight Courier Request Form</h1>
+
+<div style="width: 40%; margin: 20px auto" class='container'>
+    <p style="text-align: center">Bring your package properly labelled to OFFICE SERVICES - <u>Do Not</u> use purolator Packaging as your package <u>may not</u> be going by purolator</p>
+</div>
+
+<div style="width: 40%; margin: 50px auto">
+    <form action='/' method="POST">
+        <div class="form-group">
+            <label for="receiver">Receiver Full Name</label>
+            <input class="form-control" type="text" name="form[receiver]" placeholder="Receiver Name" required>
+        </div>
+        <div class="form-group">     
+            <label for="address">Address</label>
+            <input class="form-control" type="text" name="form[address]" placeholder="Street address" required>
+        </div>
+        <div class="form-group">     
+            <label for="postal">Postal Code</label>
+            <input class="form-control" type="text" name="form[postal]" placeholder="Postal code" required>
+            <div>
+                <span class="note"><i>The postal code is the most important routing information for any type of courier - Please make sure it is correct!</i></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone number of Receiver</label>
+            <input class="form-control" type="tel" name="form[phone]" placeholder="Format: 123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+            required>
+        </div>
+        <div class="form-group">
+            <label for="client">Client Matter Reference No.</label>
+            <input class="form-control" type="text" name="form[client]" placeholder="Format: 123-45 re Smith W/D" required>
+        </div>
+        <div class="form-group">
+            <label for="acumin">Lawyer Acumin No. <u>and</u> Name/Initials</label>
+            <input class="form-control" type="text" name="form[acumin]" placeholder="Acumin No." required>
+        </div>
+        <div class="form-group">
+            <label for="name">Your Name</label>
+            <input class="form-control" type="text" name="form[name]" placeholder="Name" required>
+        </div>
+        <div class="form-group" style="width: 32%">
+            <label for="delivery">Delivery Option</label>
+            <select class="form-control" type="text" name="form[delivery]" placeholder="Delivery" id="delivery" required>
+                <option value="select"> ------ Please Select ------ </option>
+                <option value="regular">Regular Service</option>
+                <option value="premium">Premium Service</option>
+            </select>
+            
+            <% var card = document.getElementbyId('delivery').value; %>
+            <% if (card.value === "regular") { %>
+                <% alert("please select a card type"); %>
+            <% } else if (card.value === "regular"){ %>
+                <div class="form-group">
+                    <label for="regular">Regular</label>
+                    <input type="checkbox" name="form[5:00]">
+                </div>
+            <% } else if (card.value === "premium"){ %>
+                <div class="form-group">
+                    <label for="premium">Premium Service (choose one)</label>
+                    <input type="checkbox" name="form[9:00]">
+                    <input type="checkbox" name="form[10:30]">
+                    <input type="checkbox" name="form[12:00]">
+                </div>  
+            <% } %>      
+            
+        </div>
+        <div class="form-group">
+            <label for="signature">Signature Required</label>
+            <input type="checkbox" name="form[signature]">
+            <span class="note"><i>All packages will be sent with a Signature Requirement as per Firm policy</i></span>
+        </div>
+        <div class="form-group">
+            <label for="email">Notification Email</label>
+            <input type="checkbox" name="form[email]">
+            <span class="note"><i>If you would like notification, your email will be provided in shipping details. If left blank, notification will <u>NOT</u> be requested</i></span>
+        </div>
+        <div style="width: 30%; margin: 50px auto" class="form-group">
+            <button class="btn btn-lg btn-primary btn-block">Submit!</button>
+        </div>
+    </form>
+</div>
+
+<% include partials/footer %>

@@ -1,0 +1,17 @@
+{
+  "name": "courier-form",
+  "version": "1.0.0",
+  "description": "form for submitting overnight courier info online",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "james",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "mongoose": "^5.5.2"
+  },
+  "devDependencies": {}
+}

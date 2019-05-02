@@ -1,0 +1,7 @@
+.second {
+    display: none;
+}
+.second.show {
+    display: block;
+}
+/* Select the element which has a class of second and also a class name of show. */
