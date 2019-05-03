@@ -1,6 +1,7 @@
 var express        = require('express'),
     app            = express(),
     mongoose       = require('mongoose'),
+    {Pool,Client}  = require('pg'),
     Form           = require('./models/mongoMod/form'),
     User           = require('./models/mongoMod/user');
 
@@ -12,6 +13,7 @@ app.use(express.static(__dirname + "/public"));
 app.engine('html', require('ejs').renderFile);
 app.use(express.urlencoded({extended: true}));
 
+var connect = "postgres://jamesballanger:Chancie#12@localhost/hicks_db";    
 mongoose.connect("mongodb://localhost/hicks_db", { useNewUrlParser: true });
 
 // ROOT route 
