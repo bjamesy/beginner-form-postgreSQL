@@ -1,12 +1,12 @@
 const express        = require('express'),
       app            = express(),
-      env            = require('dotenv')
       mongoose       = require('mongoose'),
       { Client }     = require('pg'),
       // fancy JS way of writing - const Client = require('pg).Client; 
       Form           = require('./models/mongoMod/form'),
       User           = require('./models/mongoMod/user');
- 
+      require('dotenv').config();
+
 // const mongoRoutes = require('./routes/mongoCalls');
 // const psqlRoutes  = require('./routes/postgreSQLcalls');
 
@@ -15,7 +15,7 @@ app.use(express.static(__dirname + "/public"));
 app.engine('html', require('ejs').renderFile);
 app.use(express.urlencoded({extended: true}));
 
-const connect = "postgres://jamesballanger:Chancie#12@localhost/hicks_db";    
+// const connect = "postgres://jamesballanger:Chancie#12@localhost/hicks_db";    
 // mongoose.connect("mongodb://localhost/hicks_db", { useNewUrlParser: true });
 
 // ROOT route 
@@ -52,6 +52,6 @@ app.post('/', (req, res) => {
 // app.use(psqlRoutes);
 
 // LISTENER 
-app.listen(process.env.PORT || 3000, () => {
-    console.log('YOUR SERVER HAS STARTED......!');
+app.listen(process.env.PORT, () => {
+    console.log(`Server running on port ${process.env.PORT} ...`);
 });

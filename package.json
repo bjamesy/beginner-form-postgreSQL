@@ -12,9 +12,7 @@
     "dotenv": "^8.0.0",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
-    "install": "^0.12.2",
     "mongoose": "^5.5.2",
-    "npm": "^6.9.0",
     "pg": "^7.10.0"
   },
   "devDependencies": {}
