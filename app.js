@@ -32,7 +32,7 @@ app.post('/', (req, res) => {
             console.log('connection complete!');
             // write queries 
             const sql = 'INSERT INTO form (receiver, address, postal, phone, client, acumin, name, delivery, time, signature, email) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)'
-            const params = ['james', '1023 bathurst st toronto', 'l9l 2e5', '9052423818', 'hicksmorley', 'sadfs', 'asdfas', 'asdfas', 'asdfa', 'yes', 'jhagskdfa@gmail.com'];
+            const params = ['james', '1023 bathurst st toronto', 'l9l 2e5', '1234', 'hicksmorley', 'sadfs', 'asdfas', 'asdfas', 'asdfa', 'yes', 'jhagskdfa@gmail.com'];
             return client.query(sql, params);
         })
         .then((result) => {
