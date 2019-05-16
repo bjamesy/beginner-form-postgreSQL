@@ -1,5 +1,6 @@
-var express = require('express'),
-    router  = express.Router();
+var express        = require('express'),
+    router         = express.Router(),
+    { Client }     = require('pg');
 
 router.post('/', (req, res) => {
     console.log('post body', req.body);
