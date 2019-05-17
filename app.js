@@ -32,7 +32,7 @@ app.get('/forms', (req, res) => {
         })
         .then((result) => {
             console.log('result', result);
-            res.render('order')
+            res.render('order', {result})
         })
         .catch((err) => {
             console.log('err', err);

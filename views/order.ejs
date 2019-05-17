@@ -1,17 +1,18 @@
-<% rows.forEach(function(form){ %>
+<% result.rows.forEach(function(rows){ %>
 
     <div>
-        <h1><strong><%= form.receiver %></strong></h1>
-        <h1><strong><%= form.address %></strong></h1>
-        <h1><strong><%= form.postal %></strong></h1>
-        <h1><strong><%= form.phone %></strong></h1>
-        <h1><strong><%= form.client %></strong></h1>
-        <h1><strong><%= form.acumin %></strong></h1>
-        <h1><strong><%= form.name %></strong></h1>
-        <h1><strong><%= form.delivery %></strong></h1>
-        <h1><strong><%= form.time %></strong></h1>
-        <h1><strong><%= form.signature %></strong></h1>
-        <h1><strong><%= form.email %></strong></h1>
+        <h1><b>Receiver: </b><%= rows.receiver %></h1>
+        <h5><b>Postal: </b><%= rows.postal %></h5>
+        <h5><b>Phone: </b><%= rows.phone %></h5>
+        <h5><b>Client: </b><%= rows.client %></h5>
+        <h5><b>Acumin: </b><%= rows.acumin %></h5>
+        <h5><b>Name: </b><%= rows.name %></h5>
+        <h5><b>Delivery: </b><%= rows.delivery %></h5>
+        <h5><b>Time: </b><%= rows.time %></h5>
+        <h5><b>Signature: </b><%= rows.signature %></h5>
+        <h5><b>Address: </b><%= rows.address %></h5>
+        <h5><b>Email: </b><%= rows.email %></h5>
+        <h5>**************************</h5>
     </div>
     
 <% }); %>
