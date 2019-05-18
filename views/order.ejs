@@ -1,7 +1,10 @@
-<% result.rows.forEach(function(rows){ %>
+<% include partials/header %>
 
-    <div>
-        <h1><b>Receiver: </b><%= rows.receiver %></h1>
+<div style="width: 90%; margin: 50px auto">
+<% result.rows.forEach(function(rows){ %>
+    <div class="form-group">
+        <h2><b>Order Id: </b><%= rows.id %></h2>
+        <h5><b>Receiver: </b><%= rows.receiver %></h5>
         <h5><b>Postal: </b><%= rows.postal %></h5>
         <h5><b>Phone: </b><%= rows.phone %></h5>
         <h5><b>Client: </b><%= rows.client %></h5>
@@ -12,7 +15,14 @@
         <h5><b>Signature: </b><%= rows.signature %></h5>
         <h5><b>Address: </b><%= rows.address %></h5>
         <h5><b>Email: </b><%= rows.email %></h5>
-        <h5>**************************</h5>
+        <form action="/forms/<%= rows.id %>?_method=DELETE" method="POST">
+            <button class="btn btn-sm btn-warning">Delete</button>
+        </form>
     </div>
-    
 <% }); %>
+<form action="/" method="GET">
+    <button class="btn btn-success">Back to Forms</button>
+</form>
+</div>
+
+<% include partials/footer %>

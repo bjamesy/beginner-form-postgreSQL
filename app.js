@@ -1,6 +1,7 @@
 const express        = require('express'),
       app            = express(),
       mongoose       = require('mongoose'),
+      methodOverride = require('method-override'),
       { Client }     = require('pg'),
       // fancy JS way of writing - const Client = require('pg).Client; 
       Form           = require('./models/mongoMod/form'),
@@ -23,25 +24,7 @@ app.set('view engine', 'ejs');
 app.get('/', (req, res) => {
     res.render('./form.html');
 });
-app.get('/forms', (req, res) => {
-    const client = new Client();
-    client.connect()
-        .then(() => {
-            // write query stuff
-            return client.query('SELECT * FROM form;');
-        })
-        .then((result) => {
-            console.log('result', result);
-            res.render('order', {result})
-        })
-        .catch((err) => {
-            console.log('err', err);
-            res.redirect('back');
-            // flash message 
-        });
-})
 
-// POST ROUTEs 
 // app.use(mongoRoutes);
 app.use(psqlRoutes);
 
