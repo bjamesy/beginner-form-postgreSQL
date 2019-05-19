@@ -12,7 +12,9 @@ router.get('/forms', (req, res) => {
         })
         .then((result) => {
             console.log('result', result);
-            res.render('order', {result})
+            res.render('order', {
+                form: result.rows
+            });
         })
         .catch((err) => {
             console.log('err', err);
@@ -44,6 +46,27 @@ router.post('/', (req, res) => {
             // flash error
         });
 });    
+// EDIT 
+router.get('/forms/edit/:id', (req, res) => {
+    const client = new Client();
+    client.connect()
+        .then(() => {
+            const sql = 'SELECT * FROM form WHERE form.id = $1;'
+            const params = [req.params.id];
+            return client.query(sql, params);
+        })
+        .then((result) => {
+            console.log('edit result: ', result);
+            res.render('./edit.html', {
+                form: result.rows
+            });
+        })
+        .catch((err) => {
+            console.log('error: ', err);
+            res.redirect('back');
+            // flash error
+        });
+})
 // DELETE
 router.post('/forms/:id', (req, res) => {
     console.log('deleting id', req.params.id);
@@ -55,7 +78,7 @@ router.post('/forms/:id', (req, res) => {
             return client.query(sql, params);
         })
         .then((result) => {
-            console.log('delete result', result);
+            console.log('delete result', {result});
             res.redirect('/forms');
             // flash success
         })

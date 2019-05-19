@@ -1,22 +1,23 @@
 <% include partials/header %>
 
 <div style="width: 90%; margin: 50px auto">
-<% result.rows.forEach(function(rows){ %>
+<% form.forEach(function(form){ %>
     <div class="form-group">
-        <h2><b>Order Id: </b><%= rows.id %></h2>
-        <h5><b>Receiver: </b><%= rows.receiver %></h5>
-        <h5><b>Postal: </b><%= rows.postal %></h5>
-        <h5><b>Phone: </b><%= rows.phone %></h5>
-        <h5><b>Client: </b><%= rows.client %></h5>
-        <h5><b>Acumin: </b><%= rows.acumin %></h5>
-        <h5><b>Name: </b><%= rows.name %></h5>
-        <h5><b>Delivery: </b><%= rows.delivery %></h5>
-        <h5><b>Time: </b><%= rows.time %></h5>
-        <h5><b>Signature: </b><%= rows.signature %></h5>
-        <h5><b>Address: </b><%= rows.address %></h5>
-        <h5><b>Email: </b><%= rows.email %></h5>
-        <form action="/forms/<%= rows.id %>?_method=DELETE" method="POST">
-            <button class="btn btn-sm btn-warning">Delete</button>
+        <h2><b>Order Id: </b><%= form.id %></h2>
+        <h5><b>Receiver: </b><%= form.receiver %></h5>
+        <h5><b>Postal: </b><%= form.postal %></h5>
+        <h5><b>Phone: </b><%= form.phone %></h5>
+        <h5><b>Client: </b><%= form.client %></h5>
+        <h5><b>Acumin: </b><%= form.acumin %></h5>
+        <h5><b>Name: </b><%= form.name %></h5>
+        <h5><b>Delivery: </b><%= form.delivery %></h5>
+        <h5><b>Time: </b><%= form.time %></h5>
+        <h5><b>Signature: </b><%= form.signature %></h5>
+        <h5><b>Address: </b><%= form.address %></h5>
+        <h5><b>Email: </b><%= form.email %></h5>
+        <a style="margin: 5px auto" class="btn btn-sm btn-warning" href="/forms/edit/<%= form.id %>"</a>Edit</a>
+        <form action="/forms/<%= form.id %>?_method=DELETE" method="POST">
+            <button class="btn btn-sm btn-danger">Delete</button>
         </form>
     </div>
 <% }); %>
