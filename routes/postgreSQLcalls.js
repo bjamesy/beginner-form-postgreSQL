@@ -11,13 +11,13 @@ router.get('/forms', (req, res) => {
             return client.query('SELECT * FROM form;');
         })
         .then((result) => {
-            console.log('result', result);
+            console.log('GET result: ', result);
             res.render('order', {
                 form: result.rows
             });
         })
         .catch((err) => {
-            console.log('err', err);
+            console.log('GET err', err);
             res.redirect('back');
             // flash message 
         });
@@ -36,12 +36,12 @@ router.post('/', (req, res) => {
             return client.query(sql, params);
         })
         .then((result) => {
-            console.log('result?', result);
+            console.log('POST result', result);
             res.redirect('/forms');
             // flash success 
         })
         .catch((err) => {
-            console.log(err);
+            console.log('POST error', err);
             res.redirect('/forms');
             // flash error
         });
@@ -56,17 +56,36 @@ router.get('/forms/edit/:id', (req, res) => {
             return client.query(sql, params);
         })
         .then((result) => {
-            console.log('edit result: ', result);
-            res.render('./edit.html', {
-                form: result.rows
+            console.log('EDIT result: ', result);
+            res.render('edit', {
+                form: result.rows[0]
             });
         })
         .catch((err) => {
-            console.log('error: ', err);
+            console.log('EDIT error: ', err);
             res.redirect('back');
             // flash error
         });
-})
+});
+// UPDATE 
+router.post('/forms/:id', (req, res) => {
+    const client = new Client();
+    client.connect()
+        .then(() => {
+            const sql = 'UPDATE form SET receiver = $1, address = $2, postal = $3, phone = $4, client = $5, acumin = $6, name = $7, delivery = $8, time = $9, signature = $10, email = $11 WHERE form.id = $12';
+            const params = [req.body.receiver, req.body.address, req.body.postal, req.body.phone, req.body.client, req.body.acumin, req.body.name, req.body.delivery, req.body.time, req.body.signature, req.body.email, req.params.id];
+            client.query(sql, params);
+        })
+        .then((result) => {
+            console.log('UPDATE result:', result);
+            res.redirect('/forms');
+        })
+        .catch((err) => {
+            console.log(('UPDATE error: ', err));
+            res.redirect('back');
+            // flash error
+        });
+});
 // DELETE
 router.post('/forms/:id', (req, res) => {
     console.log('deleting id', req.params.id);
@@ -78,12 +97,12 @@ router.post('/forms/:id', (req, res) => {
             return client.query(sql, params);
         })
         .then((result) => {
-            console.log('delete result', {result});
+            console.log('DELETE result', result);
             res.redirect('/forms');
             // flash success
         })
         .catch((err) => {
-            console.log('error', err);
+            console.log('DELETE error', err);
             res.redirect('back');
             // flash error
         }); 

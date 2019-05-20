@@ -16,39 +16,39 @@
             <form action='/' method="POST">
                 <div class="form-group font-weight-bold">
                     <label for="receiver">Receiver Full Name</label>
-                    <input class="form-control" type="text" name="receiver" placeholder="Receiver Name" required>
+                    <input class="form-control" type="text" name="receiver" value="<%= form.receiver %>" required>
                 </div>
                 <div class="form-group font-weight-bold">     
                     <label for="address">Address</label>
-                    <input class="form-control" type="text" name="address" placeholder="Street address" required>
+                    <input class="form-control" type="text" name="address" value="<%= form.address %>" required>
                 </div>
                 <div class="form-group font-weight-bold">     
                     <label for="postal">Postal Code</label>
-                    <input class="form-control" type="text" name="postal" placeholder="Format: A1A 1A1" required>
+                    <input class="form-control" type="text" name="postal" value="<%= form.postal %>" required>
                     <div>
                         <span class="note font-weight-light"><i>The postal code is the most important routing information for any type of courier - Please make sure it is correct!</i></span>
                     </div>
                 </div>
                 <div class="form-group font-weight-bold">
                     <label for="phone">Phone number of Receiver</label>
-                    <input class="form-control" type="tel" name="phone" placeholder="Format: 123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                    required>
+                    <input class="form-control" type="tel" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                    value="<%= form.phone %>" required>
                 </div>
                 <div class="form-group font-weight-bold">
                     <label for="client">Client Matter Reference No.</label>
-                    <input class="form-control" type="text" name="client" placeholder="Format: 123-45 re Smith W/D" required>
+                    <input class="form-control" type="text" name="client" value="<%= form.client %>" required>
                 </div>
                 <div class="form-group font-weight-bold">
                     <label for="acumin">Lawyer Acumin No. <u>and</u> Name/Initials</label>
-                    <input class="form-control" type="text" name="acumin" placeholder="Acumin No." required>
+                    <input class="form-control" type="text" name="acumin" value="<%= form.acumin %>" required>
                 </div>
                 <div class="form-group font-weight-bold">
                     <label for="name">Your Name</label>
-                    <input class="form-control" type="text" name="name" placeholder="Name" required>
+                    <input class="form-control" type="text" name="name" value="<%= form.name %>" required>
                 </div>
                 <div class="form-group font-weight-bold">
                     <label for="delivery">Delivery Option</label>
-                    <select class="form-control" type="text" name="delivery" placeholder="Delivery" id="delivery" required>
+                    <select class="form-control" type="text" name="delivery" id="delivery" value="<%= form.delivery %>" required>
                         <option value="select"> ------ Please Select ------ </option>
                         <option value="regular">Regular Service (5:00 pm)</option>
                         <option value="premium">Premium Service</option>
@@ -69,7 +69,7 @@
                 </div>
                 <div class="form-group">
                     <label for="email"><b>Notification Email</b></label>
-                    <input class="form-control" type="text" name="email" placeholder="Acumin No." required>
+                    <input class="form-control" type="text" name="email" value="<%= form.email %>" required>
                     <span class="note font-weight-light"><i>If you would like notification, your email will be provided in shipping details. If left blank, notification will <u>NOT</u> be requested</i></span>
                 </div>
                 <div style="width: 30%; margin: 50px auto" class="form-group">

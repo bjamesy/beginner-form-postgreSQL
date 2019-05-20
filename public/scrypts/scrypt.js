@@ -20,4 +20,5 @@ window.onload = function(){
     card.addEventListener('change', () => {
         displayBlock(card);
     });
-}
+};
+
