@@ -17,6 +17,7 @@ app.use(express.static(__dirname + "/public"));
 app.engine('html', require('ejs').renderFile);
 app.use(express.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
+app.use(methodOverride('_method'));
 
 // mongoose.connect("mongodb://localhost/hicks_db", { useNewUrlParser: true });
 

@@ -11,7 +11,9 @@ router.get('/forms', (req, res) => {
             return client.query('SELECT * FROM form;');
         })
         .then((result) => {
-            console.log('GET result: ', result);
+            console.log('GET result: ', {
+                form: result.rows
+            });
             res.render('order', {
                 form: result.rows
             });
@@ -19,18 +21,14 @@ router.get('/forms', (req, res) => {
         .catch((err) => {
             console.log('GET err', err);
             res.redirect('back');
-            // flash message 
         });
 });
 // POST
 router.post('/', (req, res) => {
     console.log('post body', req.body);
-
     const client = new Client();
     client.connect()
         .then(() => {
-            console.log('connection complete!');
-            // write queries 
             const sql = 'INSERT INTO form (receiver, address, postal, phone, client, acumin, name, delivery, time, signature, email) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)'
             const params = [req.body.receiver, req.body.address, req.body.postal, req.body.phone, req.body.client, req.body.acumin, req.body.name, req.body.delivery, req.body.time, req.body.signature, req.body.email];
             return client.query(sql, params);
@@ -38,12 +36,10 @@ router.post('/', (req, res) => {
         .then((result) => {
             console.log('POST result', result);
             res.redirect('/forms');
-            // flash success 
         })
         .catch((err) => {
             console.log('POST error', err);
             res.redirect('/forms');
-            // flash error
         });
 });    
 // EDIT 
@@ -57,6 +53,14 @@ router.get('/forms/edit/:id', (req, res) => {
         })
         .then((result) => {
             console.log('EDIT result: ', result);
+            // to handle the possibility that one were to modify the id in the url
+            if(result.rowCount === 0) {
+                console.log('Id has no corresponding Row: ', result.rowCount);
+                res.redirect('/forms');
+                // we return here to end the request - so as not to run code below
+                return;
+            };
+
             res.render('edit', {
                 form: result.rows[0]
             });
@@ -64,11 +68,11 @@ router.get('/forms/edit/:id', (req, res) => {
         .catch((err) => {
             console.log('EDIT error: ', err);
             res.redirect('back');
-            // flash error
         });
 });
 // UPDATE 
-router.post('/forms/:id', (req, res) => {
+router.put('/forms/:id', (req, res) => {
+    
     const client = new Client();
     client.connect()
         .then(() => {
@@ -83,12 +87,10 @@ router.post('/forms/:id', (req, res) => {
         .catch((err) => {
             console.log(('UPDATE error: ', err));
             res.redirect('back');
-            // flash error
         });
 });
 // DELETE
-router.post('/forms/:id', (req, res) => {
-    console.log('deleting id', req.params.id);
+router.delete('/forms/:id', (req, res) => {
     const client = new Client();
     client.connect()
         .then(() => {
@@ -99,12 +101,10 @@ router.post('/forms/:id', (req, res) => {
         .then((result) => {
             console.log('DELETE result', result);
             res.redirect('/forms');
-            // flash success
         })
         .catch((err) => {
             console.log('DELETE error', err);
             res.redirect('back');
-            // flash error
         }); 
 });
 
